@@ -2,7 +2,7 @@ import React from 'react'
 import Helmet from 'react-helmet'
 import Link from 'gatsby-link'
 
-export default function Template({ data }) {
+export default function Template({ data, history: { goBack } }) {
     const { mongodbGatsbymeteorpocJobs: { id, title, description, locations } } = data
     return (
         <div>
@@ -15,7 +15,7 @@ export default function Template({ data }) {
                     ))}
                 </ul>
             )}
-            <Link to="/">Go Back</Link>
+            <button onClick={goBack}>Go Back</button>
         </div>
     )
 }

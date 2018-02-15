@@ -7,6 +7,7 @@
 // You can delete this file if you're not using it
 
 const path = require('path')
+const createPaginatedPages = require('gatsby-paginate')
 
 exports.createPages = ({ graphql, boundActionCreators }) => {
     const { createPage } = boundActionCreators
@@ -17,6 +18,7 @@ exports.createPages = ({ graphql, boundActionCreators }) => {
                 edges {
                   node {
                     id
+                    title
                   }
                 }
               }
@@ -25,6 +27,12 @@ exports.createPages = ({ graphql, boundActionCreators }) => {
                 console.error(errors)
                 Promise.reject(errors)
             }
+            createPaginatedPages({
+                edges: jobs,
+                createPage: createPage,
+                pageTemplate: "src/templates/index.js",
+                pageLength: 3
+            })
             jobs.forEach(({ node: { id } }) => {
                 createPage({
                     path: `/job/${id}`,

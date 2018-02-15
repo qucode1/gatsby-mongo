@@ -19,6 +19,7 @@ exports.createPages = ({ graphql, boundActionCreators }) => {
                   node {
                     id
                     title
+                    locations
                   }
                 }
               }

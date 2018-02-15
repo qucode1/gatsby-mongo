@@ -21,5 +21,7 @@ module.exports = {
         }
       }
     },
+    'gatsby-plugin-styled-jsx',
+    `gatsby-plugin-react-next`
   ],
 };

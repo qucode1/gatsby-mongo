@@ -20,6 +20,7 @@ exports.createPages = ({ graphql, boundActionCreators }) => {
                     id
                     title
                     locations
+                    shortDescription
                   }
                 }
               }
@@ -32,7 +33,7 @@ exports.createPages = ({ graphql, boundActionCreators }) => {
                 edges: jobs,
                 createPage: createPage,
                 pageTemplate: "src/templates/index.js",
-                pageLength: 3
+                pageLength: 10
             })
             jobs.forEach(({ node: { id } }) => {
                 createPage({

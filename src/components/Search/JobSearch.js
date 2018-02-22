@@ -66,10 +66,10 @@ export default class ApolloAutoComplete extends Component {
                                             .filter(i =>
                                                 !inputValue ||
                                                 i.title.toLowerCase()
-                                                    .replace(/[^a-z0-9]/, "")
+                                                    .replace(/[^a-z0-9]/g, "")
                                                     .includes(
                                                         inputValue.toLowerCase()
-                                                            .replace(/[^a-z0-9]/), ""
+                                                            .replace(/[^a-z0-9]/g, "")
                                                     )
                                             )
                                             .slice(0, 6)

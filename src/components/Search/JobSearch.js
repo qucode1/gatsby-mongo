@@ -12,7 +12,7 @@ export default class ApolloAutoComplete extends Component {
     constructor(props) {
         super(props)
         this.state = {
-            queryResult: JSON.parse(sessionStorage.getItem("jobTitles")) || undefined
+            queryResult: (window !== undefined && JSON.parse(sessionStorage.getItem("jobTitles"))) || undefined
         }
         this.runQuery = this.runQuery.bind(this)
     }
@@ -30,7 +30,7 @@ export default class ApolloAutoComplete extends Component {
             })
                 .then(result => {
                     this.setState({ queryResult: result.data.jobs })
-                    sessionStorage.setItem("jobTitles", JSON.stringify(result.data.jobs))
+                    window !== undefined && sessionStorage.setItem("jobTitles", JSON.stringify(result.data.jobs))
                 })
                 .catch(error => {
                     this.setState({ queryResult: error })

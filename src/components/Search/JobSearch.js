@@ -8,11 +8,15 @@ import Downshift from 'downshift'
 const uri = "https://yannick-lernt.de/graphql"
 const client = createApolloFetch({ uri })
 
+function is_server() {
+    return !(typeof window != 'undefined' && window.document);
+}
+
 export default class ApolloAutoComplete extends Component {
     constructor(props) {
         super(props)
         this.state = {
-            queryResult: (window !== undefined && JSON.parse(sessionStorage.getItem("jobTitles"))) || undefined
+            queryResult: (!is_server() && JSON.parse(sessionStorage.getItem("jobTitles"))) || undefined
         }
         this.runQuery = this.runQuery.bind(this)
     }
@@ -30,7 +34,7 @@ export default class ApolloAutoComplete extends Component {
             })
                 .then(result => {
                     this.setState({ queryResult: result.data.jobs })
-                    window !== undefined && sessionStorage.setItem("jobTitles", JSON.stringify(result.data.jobs))
+                    !is_server() && sessionStorage.setItem("jobTitles", JSON.stringify(result.data.jobs))
                 })
                 .catch(error => {
                     this.setState({ queryResult: error })

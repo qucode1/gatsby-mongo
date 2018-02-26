@@ -5,7 +5,7 @@ import Downshift from 'downshift'
 
 // const gqlEndpoint = process.env.GRAPHQL_ENDPOINT
 
-const uri = "http://localhost:3000/graphql"
+const uri = "https://yannick-lernt.de/graphql"
 const client = createApolloFetch({ uri })
 
 export default class ApolloAutoComplete extends Component {
